@@ -20,8 +20,15 @@ export function createMcpServer(userId: string | null): McpServer {
   // ── register (público, no requiere API key) ────────────────────────────────
   server.tool(
     'register',
-    `Registra un nuevo usuario en CalTrack. Pide el email al usuario \
-y devuelve una API key que el usuario debe guardar en un lugar seguro.`,
+    `Registra un nuevo usuario en CalTrack. Pide el email al usuario y devuelve una API key.
+
+IMPORTANTE: Después de llamar este tool, NO intentes llamar ningún otro tool de CalTrack.
+La API key debe configurarse en el cliente MCP antes de poder usarlos.
+Indica al usuario exactamente qué hacer:
+1. Copiar la API key
+2. Agregarla en la configuración del cliente MCP como header: Authorization: Bearer <api_key>
+3. Reiniciar o recargar la conexión MCP
+4. Volver a escribir para continuar con el perfil y el registro de comidas`,
     { email: z.string().email().describe('Email del usuario') },
     async ({ email }) => {
       const user = await createUser(email)
@@ -30,7 +37,12 @@ y devuelve una API key que el usuario debe guardar en un lugar seguro.`,
           type: 'text',
           text: JSON.stringify({
             api_key: user.api_key,
-            message: 'Guarda esta API key, no se puede recuperar. Agrégala como header Authorization: Bearer <key> en tu cliente MCP.',
+            next_steps: [
+              '1. Guarda esta API key, no se puede recuperar.',
+              '2. Agrégala en tu cliente MCP como header: Authorization: Bearer ' + user.api_key,
+              '3. Recarga la conexión MCP.',
+              '4. Vuelve a escribir para completar tu perfil.',
+            ],
           }),
         }],
       }
