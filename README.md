@@ -26,11 +26,37 @@ The AI does the talking. The backend does the math (BMR, TDEE via Mifflin-St Jeo
 
 ---
 
+## Authentication
+
+CalTrack uses API keys with the prefix `cal_`. You get yours by registering via the `register` MCP tool or `POST /auth/register`.
+
+Two ways to authenticate — use whichever your client supports:
+
+| Method | How | Best for |
+|--------|-----|----------|
+| **Bearer header** | `Authorization: Bearer cal_xxx` | Claude Desktop, direct API calls |
+| **Query param** | `https://caltrack.xplaya.com/mcp?key=cal_xxx` | Claude.ai web, any client that only accepts a URL |
+
+Only the `register` tool and `POST /auth/register` are public. Everything else requires auth.
+
+---
+
 ## Quick start — Claude
 
-### 1. Add the MCP server
+### 1. Register first (no API key needed yet)
 
-**Claude.ai (web/mobile):** Settings → Integrations → Add MCP server
+Add the MCP server **without** your key and ask Claude to register you:
+
+> "Register me in CalTrack"
+
+Claude will ask for your email and return your API key. Copy it.
+
+### 2. Add the MCP server with your key
+
+**Claude.ai web/mobile** — Settings → Integrations → Add MCP server, use this URL:
+```
+https://caltrack.xplaya.com/mcp?key=cal_your_api_key_here
+```
 
 **Claude Desktop** (`claude_desktop_config.json`):
 ```json
@@ -45,14 +71,6 @@ The AI does the talking. The backend does the math (BMR, TDEE via Mifflin-St Jeo
   }
 }
 ```
-
-### 2. Register
-
-Leave the `Authorization` header empty for now and tell Claude:
-
-> "Register me in CalTrack"
-
-Claude will ask for your email and give you an API key. Add it to the config above.
 
 ### 3. Start tracking
 

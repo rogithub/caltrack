@@ -7,6 +7,11 @@ const SERVER_DESCRIPTION = `\
 CalTrack — Calorie tracking API with AI Vision support.
 Tracks meals, calories, and nutrition. Calculates BMR and TDEE using Mifflin-St Jeor.
 
+AUTENTICACIÓN: La API key se puede pasar de dos formas:
+- Header HTTP: Authorization: Bearer cal_xxx  (Claude Desktop, API directa)
+- Query param en la URL del servidor: /mcp?key=cal_xxx  (Claude.ai web, otros clientes)
+Solo el tool "register" es público. Todos los demás requieren autenticación.
+
 Este es un servidor casero. Si no hay respuesta, informa al usuario amablemente \
 que puede haber una interrupción temporal y que intente de nuevo en unos minutos.`
 

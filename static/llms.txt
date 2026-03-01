@@ -4,3 +4,8 @@ Register meals by photo, query history and get personalized nutrition context.
 
 OpenAPI schema: https://caltrack.xplaya.com/docs/json
 MCP server: https://caltrack.xplaya.com/mcp
+
+Authentication:
+- Bearer token header: Authorization: Bearer cal_xxx  (Claude Desktop, direct API)
+- Query parameter: https://caltrack.xplaya.com/mcp?key=cal_xxx  (Claude.ai web, other clients)
+The "register" tool is public. All other tools require authentication.
