@@ -1,0 +1,6 @@
+# CalTrack
+Calorie tracking API with AI Vision support.
+Register meals by photo, query history and get personalized nutrition context.
+
+OpenAPI schema: https://caltrack.xplaya.com/docs/json
+MCP server: https://caltrack.xplaya.com/mcp

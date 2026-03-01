@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CalTrack — Calorie tracking for AI clients</title>
+  <meta name="description" content="Open source calorie tracker with MCP server and REST API. Works with Claude, ChatGPT and any AI Vision client.">
+  <meta property="og:title" content="CalTrack">
+  <meta property="og:description" content="Track calories with AI Vision. Free forever, self-hostable.">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 4rem auto; padding: 0 1.5rem; color: #333; }
+    h1 { font-size: 2rem; margin-bottom: 0.25rem; }
+    p { color: #555; line-height: 1.6; }
+    code { background: #f4f4f4; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+    ol { color: #555; line-height: 2; }
+    .links { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .links a { background: #0066cc; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; }
+    .links a:hover { background: #0052a3; }
+  </style>
+</head>
+<body>
+  <h1>CalTrack</h1>
+  <p>Open source calorie tracker for AI clients. Take a photo of your food and your AI estimates the calories and logs them automatically.</p>
+  <p>Works with <strong>Claude</strong>, ChatGPT, and any AI Vision client. No dashboard, no app — just talk to your AI.</p>
+
+  <h2>Get started</h2>
+  <ol>
+    <li>Add the MCP server to your Claude config: <code>https://caltrack.xplaya.com/mcp</code></li>
+    <li>Ask Claude to register you</li>
+    <li>Start logging meals by photo or description</li>
+  </ol>
+
+  <div class="links">
+    <a href="/docs">API Docs</a>
+    <a href="https://github.com/rogithub/caltrack">GitHub</a>
+    <a href="/llms.txt">llms.txt</a>
+  </div>
+</body>
+</html>
