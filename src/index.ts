@@ -56,8 +56,13 @@ app.post('/mcp', { schema: { hide: true } }, async (req, reply) => {
 
   let userId: string | null = null
   const authHeader = req.headers.authorization
-  if (authHeader?.startsWith('Bearer ')) {
-    const apiKey = authHeader.slice(7)
+  const queryKey   = (req.query as Record<string, string>).key
+
+  const apiKey = authHeader?.startsWith('Bearer ')
+    ? authHeader.slice(7)
+    : queryKey ?? null
+
+  if (apiKey) {
     const user = await getUserByApiKey(apiKey)
     userId = user?.id ?? null
   }
