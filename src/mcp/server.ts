@@ -106,7 +106,8 @@ Las estimaciones son aproximadas. Recuerda al usuario consultar a su médico o n
       ])
 
       const days = Math.max(1, Math.ceil(daysDiff))
-      const totalCalories = (meals as Array<{ calories: number }>).reduce((s, m) => s + m.calories, 0)
+      const mealsList = meals as unknown as Array<{ calories: number }>
+      const totalCalories = mealsList.reduce((s, m) => s + m.calories, 0)
 
       const response: Record<string, unknown> = {
         from, to,
@@ -117,7 +118,7 @@ Las estimaciones son aproximadas. Recuerda al usuario consultar a su médico o n
         },
       }
 
-      const ctx = buildProfileContext(profile, meals as Array<{ calories: number }>, fromDate, toDate)
+      const ctx = buildProfileContext(profile, mealsList, fromDate, toDate)
       if (ctx) response.profile_context = ctx
 
       return { content: [{ type: 'text', text: JSON.stringify(response) }] }

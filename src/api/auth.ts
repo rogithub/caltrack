@@ -14,15 +14,6 @@ export async function authRoutes(app: FastifyInstance) {
           email: { type: 'string', format: 'email' },
         },
       },
-      response: {
-        201: {
-          type: 'object',
-          properties: {
-            api_key: { type: 'string' },
-            message: { type: 'string' },
-          },
-        },
-      },
     },
   }, async (req, reply) => {
     const { email } = req.body as { email: string }

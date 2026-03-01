@@ -72,7 +72,8 @@ export async function mealsRoutes(app: FastifyInstance) {
     ])
 
     const days = Math.max(1, Math.ceil(daysDiff))
-    const totalCalories = (meals as Array<{ calories: number }>).reduce((sum, m) => sum + m.calories, 0)
+    const mealsList = meals as unknown as Array<{ calories: number }>
+    const totalCalories = mealsList.reduce((sum, m) => sum + m.calories, 0)
 
     const response: Record<string, unknown> = {
       from,
@@ -84,7 +85,7 @@ export async function mealsRoutes(app: FastifyInstance) {
       },
     }
 
-    const profileContext = buildProfileContext(profile, meals as Array<{ calories: number }>, fromDate, toDate)
+    const profileContext = buildProfileContext(profile, mealsList, fromDate, toDate)
     if (profileContext) response.profile_context = profileContext
 
     return reply.send(response)
